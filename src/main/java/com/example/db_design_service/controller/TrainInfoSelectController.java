@@ -354,11 +354,8 @@ public class TrainInfoSelectController {
      * 管理员界面管理车次的信息
      */
     @RequestMapping(value ="/selectAllDeparture",method = RequestMethod.POST)
-    public TrainDepartureData selectAllDeparture(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult)
+    public TrainDepartureData selectAllDeparture()
     {
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-        }
         System.out.println("连接selectAllDeparture成功");
         List<TrainDeparture> trainDepartures = trainInfoService.selectAllDeparture();
         return new TrainDepartureData(1, trainDepartures);

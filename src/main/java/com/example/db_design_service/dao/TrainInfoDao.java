@@ -90,8 +90,7 @@ public interface TrainInfoDao {
     @Select("select * from train_departure")
     List<TrainDeparture> selectAllDeparture();
 
-    @Update("update train_departure set train_start_station=#{trainDeparture.train_start_station},train_stopover_station=#{trainDeparture.train_stopover_station}," +
-            "train_end_station=#{trainDeparture.train_end_station},passenger_volume=#{trainDeparture.passenger_volume}," +
+    @Update("update train_departure set passenger_volume=#{trainDeparture.passenger_volume}," +
             "train_start_time=#{trainDeparture.train_start_time},frequency=#{trainDeparture.frequency}" +
             " where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=#{trainDeparture.train_stopover_station} and train_end_station=#{trainDeparture.train_end_station}")
     void updateDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
