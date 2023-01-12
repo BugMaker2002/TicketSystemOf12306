@@ -1,9 +1,11 @@
 package com.example.db_design_service.service;
 
 import com.example.db_design_service.bean.SeatInfo;
+import com.example.db_design_service.bean.TrainDeparture;
 import com.example.db_design_service.bean.TrainInfo;
 import com.example.db_design_service.bean.TrainParkingInfo;
 import com.example.db_design_service.dao.TrainInfoDao;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -100,4 +102,14 @@ public class TrainInfoService {
 
         trainInfoDao.AddTrainStation(trainParkingInfo,train_no);
     }
+
+    /**
+     * 管理员界面管理车次的信息
+     */
+    public List<TrainDeparture> selectAllDeparture(){return trainInfoDao.selectAllDeparture();}
+    public void updateDeparture(TrainDeparture trainDeparture){trainInfoDao.updateDeparture(trainDeparture);}
+    public void addDeparture(TrainDeparture trainDeparture){trainInfoDao.addDeparture(trainDeparture);}
+    public void deleteDeparture(TrainDeparture trainDeparture){trainInfoDao.deleteDeparture(trainDeparture);};
+
+
 }

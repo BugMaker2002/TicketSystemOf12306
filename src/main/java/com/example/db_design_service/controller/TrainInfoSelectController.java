@@ -350,4 +350,92 @@ public class TrainInfoSelectController {
 
 
 
+    /**
+     * 管理员界面管理车次的信息
+     */
+    @RequestMapping(value ="/selectAllDeparture",method = RequestMethod.POST)
+    public TrainDepartureData selectAllDeparture(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        System.out.println("连接selectAllDeparture成功");
+        List<TrainDeparture> trainDepartures = trainInfoService.selectAllDeparture();
+        return new TrainDepartureData(1, trainDepartures);
+    }
+
+    @RequestMapping(value ="/updateDeparture",method = RequestMethod.POST)
+    public RespBean updateDeparture(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        System.out.println("连接updateDeparture成功");
+        String train_start_station = (String) request.get("train_start_station");
+        String train_stopover_station = (String) request.get("train_stopover_station");
+        String train_end_station = (String) request.get("train_end_station");
+        int passenger_volume = (int) request.get("passenger_volume");
+        String train_start_time = (String) request.get("train_start_time");
+        String frequency = (String) request.get("frequency");
+        try{
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+                    passenger_volume, train_start_time, frequency);
+            trainInfoService.updateDeparture(trainDeparture);
+            return new RespBean(1,"修改成功");
+        }catch (Exception e)
+        {
+            logger.info(e.getMessage());
+            return new RespBean(403,"修改失败");
+        }
+    }
+
+    @RequestMapping(value ="/addDeparture",method = RequestMethod.POST)
+    public RespBean addDeparture(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        System.out.println("连接addDeparture成功");
+        String train_start_station = (String) request.get("train_start_station");
+        String train_stopover_station = (String) request.get("train_stopover_station");
+        String train_end_station = (String) request.get("train_end_station");
+        int passenger_volume = (int) request.get("passenger_volume");
+        String train_start_time = (String) request.get("train_start_time");
+        String frequency = (String) request.get("frequency");
+        try{
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+                    passenger_volume, train_start_time, frequency);
+            trainInfoService.addDeparture(trainDeparture);
+            return new RespBean(1,"插入成功");
+        }catch (Exception e)
+        {
+            logger.info(e.getMessage());
+            return new RespBean(403,"插入失败");
+        }
+    }
+
+    @RequestMapping(value ="/deleteDeparture",method = RequestMethod.POST)
+    public RespBean deleteDeparture(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult)
+    {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        System.out.println("连接deleteDeparture成功");
+        String train_start_station = (String) request.get("train_start_station");
+        String train_stopover_station = (String) request.get("train_stopover_station");
+        String train_end_station = (String) request.get("train_end_station");
+        int passenger_volume = (int) request.get("passenger_volume");
+        String train_start_time = (String) request.get("train_start_time");
+        String frequency = (String) request.get("frequency");
+        try{
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+                    passenger_volume, train_start_time, frequency);
+            trainInfoService.deleteDeparture(trainDeparture);
+            return new RespBean(1,"删除成功");
+        }catch (Exception e)
+        {
+            logger.info(e.getMessage());
+            return new RespBean(403,"删除失败");
+        }
+    }
 }

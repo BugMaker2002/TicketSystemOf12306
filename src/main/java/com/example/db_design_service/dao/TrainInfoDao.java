@@ -1,9 +1,6 @@
 package com.example.db_design_service.dao;
 
-import com.example.db_design_service.bean.SeatInfo;
-import com.example.db_design_service.bean.TrainInfo;
-import com.example.db_design_service.bean.TrainParkingInfo;
-import com.example.db_design_service.bean.User;
+import com.example.db_design_service.bean.*;
 import org.apache.ibatis.annotations.*;
 
 import javax.swing.text.TabableView;
@@ -87,9 +84,27 @@ public interface TrainInfoDao {
             "#{trainInfo.station_no},#{trainInfo.station_name})")
     void AddTrainStation(@Param("trainInfo") TrainParkingInfo trainParkingInfo,@Param("train_no") String train_no);
 
+    /**
+     * 管理员界面管理车次的信息
+     */
+    @Select("select * from train_departure")
+    List<TrainDeparture> selectAllDeparture();
 
+    @Update("update train_departure set train_start_station=#{trainDeparture.train_start_station},train_stopover_station=#{trainDeparture.train_stopover_station}," +
+            "train_end_station=#{trainDeparture.train_end_station},passenger_volume=#{trainDeparture.passenger_volume}," +
+            "train_start_time=#{trainDeparture.train_start_time},frequency=#{trainDeparture.frequency}" +
+            " where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=#{trainDeparture.train_stopover_station} and train_end_station=#{trainDeparture.train_end_station}")
+    void updateDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 
+    @Insert("insert into train_departure values(#{trainDeparture.train_start_station},#{trainDeparture.train_stopover_station}," +
+            "#{trainDeparture.train_end_station},#{trainDeparture.passenger_volume}," +
+            "#{trainDeparture.train_start_time},#{trainDeparture.frequency})")
+    void addDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 
+    @Delete("delete from train_departure where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=#{trainDeparture.train_stopover_station}" +
+            "and train_end_station=#{trainDeparture.train_end_station} and passenger_volume=#{trainDeparture.passenger_volume}" +
+            "and train_start_time=#{trainDeparture.train_start_time} and frequency=#{trainDeparture.frequency}")
+    void deleteDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 }
 
 
