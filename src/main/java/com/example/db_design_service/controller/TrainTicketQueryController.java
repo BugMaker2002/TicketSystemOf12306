@@ -72,11 +72,13 @@ public class TrainTicketQueryController {
                     if(trainScheduleInfo.getTrain_number().substring(0,1).equals("G") ||trainScheduleInfo.getTrain_number().substring(0,1).equals("D"))
                     {
 
-                        trainTicketPriceInfos.add(trainTickerQueryService.queryTicketPrice_GD(train_start_station,train_end_station,trainScheduleInfo.getTrain_no()));
+                        trainTicketPriceInfos.add(trainTickerQueryService.queryTicketPrice_GD(train_start_station,train_end_station,
+                                trainScheduleInfo.getTrain_no()));
                     }
                     else
                     {
-                        trainTicketPriceInfos.add(trainTickerQueryService.queryTicketPrice(train_start_station,train_end_station,trainScheduleInfo.getTrain_no()));
+                        trainTicketPriceInfos.add(trainTickerQueryService.queryTicketPrice(train_start_station,train_end_station,
+                                trainScheduleInfo.getTrain_no()));
 
                     }
             }
