@@ -43,7 +43,7 @@ public class TrainInfoSelectController {
     @RequestMapping(value ="/traininfo",method = RequestMethod.GET)
     public TrainInfoReturnData TrainInfo(Integer offset,Integer limit)
     {
-
+        System.out.println("traininfo函数");
         List<TrainInfo>  trainInfos = trainInfoService.selectAllTrainInfo(offset,limit);
 
 
@@ -193,6 +193,7 @@ public class TrainInfoSelectController {
     @RequestMapping(value ="/getAllTrainNumber",method = RequestMethod.GET)
     public GetAllTrainNumberListReturnData getAllTrainNumber()
     {
+        System.out.println("getAllTrainNumber调用");
         try {
 
             List<String> trainNumberLists = trainInfoService.selectAllTrainNumber();
@@ -375,7 +376,8 @@ public class TrainInfoSelectController {
         String train_start_time = (String) request.get("train_start_time");
         String frequency = (String) request.get("frequency");
         try{
-            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station,
+                    train_stopover_station, train_end_station,
                     passenger_volume, train_start_time, frequency);
             trainInfoService.updateDeparture(trainDeparture);
             return new RespBean(1,"修改成功");
@@ -400,7 +402,8 @@ public class TrainInfoSelectController {
         String train_start_time = (String) request.get("train_start_time");
         String frequency = (String) request.get("frequency");
         try{
-            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station,
+                    train_stopover_station, train_end_station,
                     passenger_volume, train_start_time, frequency);
             trainInfoService.addDeparture(trainDeparture);
             return new RespBean(1,"插入成功");
@@ -425,8 +428,10 @@ public class TrainInfoSelectController {
         String train_start_time = (String) request.get("train_start_time");
         String frequency = (String) request.get("frequency");
         try{
-            TrainDeparture trainDeparture = new TrainDeparture(train_start_station, train_stopover_station, train_end_station,
+            TrainDeparture trainDeparture = new TrainDeparture(train_start_station,
+                    train_stopover_station, train_end_station,
                     passenger_volume, train_start_time, frequency);
+
             trainInfoService.deleteDeparture(trainDeparture);
             return new RespBean(1,"删除成功");
         }catch (Exception e)

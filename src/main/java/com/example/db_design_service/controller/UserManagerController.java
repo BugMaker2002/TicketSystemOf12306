@@ -45,22 +45,14 @@ public class UserManagerController {
     @RequestMapping(value ="/login",method = RequestMethod.POST)
     public RespBean UserLogin(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult) {
         System.out.println("后端接收了");
-
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getFieldError().getDefaultMessage());
         }
         String username = (String) request.get("user_name");
         String password = (String) request.get("password");
-
         try
         {
-            /**
-             *
-             * 查找是否有此用户
-             */
-
             List<User> users = userService.selectAllUser();
-
             for (User user : users) {
                 if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) && user.getUser_type()==2)
                 {
@@ -68,27 +60,13 @@ public class UserManagerController {
                     logger.info(username);
                     logger.info(password);
                     logger.info("登录成功");
-
-                    //token生成  用户信息redis缓存
-                    String token =user.getUser_real_name()+","+user.getUser_phone_number()+","+user.getUser_email()+","+user.getUser_type()+","+user.getUser_gender()
+                    String token =user.getUser_real_name()+","+user.getUser_phone_number()+","+user.getUser_email()+","+
+                            user.getUser_type()+","+user.getUser_gender()
                             +","+user.getUser_id_number()+","+user.getUser_address();
-                    //                Token token =new Token(userlogin.getUser_phone_number()+"+++"+userlogin.getUser_password());
-//                String [] roles= new String[1];
-//                roles[0] = "admin";
-//                User user = userService.selectUserInfo(userlogin.getUser_phone_number());
-//                UserInfoReturnData data = new UserInfoReturnData(roles,user.getUser_phone_number(),user.getUser_id_number(),user.getUser_real_name());
-
-                    /**
-                     * 将用户登陆信息存入token中
-                     */
                     redisUtils.set(user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password(),token);
-//                        redisUtils.get(token.getToken());
-
                     return new RespBean(1,user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password());
-
                 }
             }
-
         }
         catch(Exception e)
         {
@@ -147,7 +125,6 @@ public class UserManagerController {
         String user_address = (String)request.get("user_address");
         String user_type = (String)request.get("user_type");
         try {
-
             /**
              * 查询此用户是否已经注册
              */
@@ -209,8 +186,6 @@ public class UserManagerController {
                         logger.info("注册失败");
                         return new RespBean(403,"用户名重复");
                     }
-
-
                 }
             }
         }
@@ -372,14 +347,11 @@ public class UserManagerController {
      */
     @RequestMapping(value ="/adminLogin",method = RequestMethod.POST)
     public RespBean AdminLogin(@Valid @RequestBody Map<String,Object> request, BindingResult bindingResult) {
-
-
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getFieldError().getDefaultMessage());
         }
         String username = (String) request.get("user_name");
         String password = (String) request.get("password");
-
         try
         {
             List<User> users = userService.selectAllUser();
@@ -387,22 +359,13 @@ public class UserManagerController {
             for (User user : users) {
                 if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) && user.getUser_type() ==0 )
                 {
-
-                    //token生成  用户信息redis缓存
-                    String token =user.getUser_real_name()+","+user.getUser_phone_number()+","+user.getUser_email()+","+user.getUser_type()+","+user.getUser_gender()
+                    String token =user.getUser_real_name()+","+user.getUser_phone_number()+","+user.getUser_email()
+                            +","+user.getUser_type()+","+user.getUser_gender()
                             +","+user.getUser_id_number()+","+user.getUser_address();
-
-                    /**
-                     * 将用户登陆信息存入token中
-                     */
                     redisUtils.set(user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password(),token);
-//                        redisUtils.get(token.getToken());
-
                     return new RespBean(1,user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password());
-
                 }
             }
-
         }
         catch(Exception e)
         {

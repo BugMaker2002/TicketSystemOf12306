@@ -59,9 +59,11 @@ public class TrainScheduleController {
      * @return
      */
     @RequestMapping(value ="/getTrainScheduleList",method = RequestMethod.GET)
-    public TrainScheduleReturnData GetTrainScheduleInfoList(@RequestParam String train_start_station_no, String  train_end_station_no, String train_no) {
+    public TrainScheduleReturnData GetTrainScheduleInfoList(@RequestParam String train_start_station_no,
+                                                            String  train_end_station_no, String train_no) {
 
-        List<TrainScheduleInfo> trainScheduleInfos = trainScheduleService.searchTrainScheduleInfoList(train_no,train_start_station_no,train_end_station_no);
+        List<TrainScheduleInfo> trainScheduleInfos = trainScheduleService.searchTrainScheduleInfoList(train_no,
+                train_start_station_no,train_end_station_no);
         return new TrainScheduleReturnData(1,trainScheduleInfos);
     }
 

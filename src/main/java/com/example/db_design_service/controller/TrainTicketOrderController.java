@@ -135,16 +135,19 @@ public class TrainTicketOrderController {
             {
                 if(Seat_type.equals("特等座"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
 
                 }
                 if(Seat_type.equals("一等座"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("二等座"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
                 }
             }
             else
@@ -154,7 +157,8 @@ public class TrainTicketOrderController {
                     high_seat_price = high_seat_price.substring(1,high_seat_price.length());
                     double price = Double.parseDouble(high_seat_price) *0.75;
                     high_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
 
                 }
                 if(Seat_type.equals("一等座"))
@@ -162,14 +166,16 @@ public class TrainTicketOrderController {
                     medium_seat_price = medium_seat_price.substring(1,medium_seat_price.length());
                     double price = Double.parseDouble(medium_seat_price) *0.75;
                     medium_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("二等座"))
                 {
                     low_seat_price = low_seat_price.substring(1,low_seat_price.length());
                     double price = Double.parseDouble(low_seat_price) *0.75;
                     low_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
                 }
             }
 
@@ -186,15 +192,18 @@ public class TrainTicketOrderController {
 
                 if(Seat_type.equals("软卧"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("硬卧"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("硬坐"))
                 {
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
                 }
             }
             else
@@ -204,21 +213,24 @@ public class TrainTicketOrderController {
                     high_seat_price = high_seat_price.substring(1,high_seat_price.length());
                     double price = Double.parseDouble(high_seat_price) *0.75;
                     high_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),high_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("硬卧"))
                 {
                     medium_seat_price = medium_seat_price.substring(1,medium_seat_price.length());
                     double price = Double.parseDouble(medium_seat_price) *0.75;
                     medium_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),medium_seat_price,order_create_time,"未支付",datetime);
                 }
                 if(Seat_type.equals("硬坐"))
                 {
                     low_seat_price = low_seat_price.substring(1,low_seat_price.length());
                     double price = Double.parseDouble(low_seat_price) *0.75;
                     low_seat_price = String.valueOf(price);
-                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
+                    orderList = new OrderList(user_phone_number,passenger_phone_number,passenger_id_number,train_no,start_no,start_station_name,
+                            end_no,end_station_name,carriage_no,String.valueOf(result_seat_no),low_seat_price,order_create_time,"未支付",datetime);
                 }
             }
 
