@@ -42,8 +42,9 @@ public class TrainScheduleController {
      */
     @RequestMapping(value ="/searchTrainSchedule",method = RequestMethod.GET)
     public TrainScheduleReturnData GetTrainScheduleInfo(@RequestParam String train_start_station, String train_end_station) {
-
+        System.out.println("searchTrainSchedule");
         List<TrainScheduleInfo> trainScheduleInfos = trainScheduleService.searchTrainScheduleInfo(train_start_station,train_end_station);
+        System.out.println(trainScheduleInfos);
         return new TrainScheduleReturnData(1,trainScheduleInfos);
 
     }
@@ -77,7 +78,7 @@ public class TrainScheduleController {
 
     @RequestMapping(value ="/searchTransferSchedule",method = RequestMethod.GET)
     public TrainTransferScheduleReturnData GetTrainScheduleInfoList(@RequestParam String train_start_station, String train_end_station) {
-
+        System.out.println("searchTransferSchedule");
        logger.info(train_start_station);
        logger.info(train_end_station);
        List<TrainTransferSchedule> trainTransferScheduleList = trainScheduleService.searchTransferSchedule(train_start_station,train_end_station);
@@ -112,6 +113,7 @@ public class TrainScheduleController {
         {
             logger.info(String.valueOf(getMin(trainTransferSchedule.getStart_time_2()) -getMin(trainTransferSchedule.getArrive_time_1())));
         }
+        System.out.println(trainTransferScheduleList);
             return new TrainTransferScheduleReturnData(1,trainTransferScheduleList);
     }
 

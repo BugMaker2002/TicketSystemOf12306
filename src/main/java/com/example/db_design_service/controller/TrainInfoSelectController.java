@@ -43,7 +43,7 @@ public class TrainInfoSelectController {
     @RequestMapping(value ="/traininfo",method = RequestMethod.GET)
     public TrainInfoReturnData TrainInfo(Integer offset,Integer limit)
     {
-        System.out.println("traininfo函数");
+        System.out.println("traininfo调用");
         List<TrainInfo>  trainInfos = trainInfoService.selectAllTrainInfo(offset,limit);
 
 
@@ -67,7 +67,7 @@ public class TrainInfoSelectController {
     @RequestMapping(value ="/searchtraininfo",method = RequestMethod.GET)
     public SearchTrainInfoReturnData SearchTrainInfo(String train_number)
     {
-
+        System.out.println("searchtraininfo被调用"+train_number);
         TrainInfo trainInfo = trainInfoService.selectTrainInfo(train_number);
         if(!trainInfo.toString().equals(""))
         {

@@ -54,7 +54,7 @@ public class UserManagerController {
         {
             List<User> users = userService.selectAllUser();
             for (User user : users) {
-                if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) && user.getUser_type()==2)
+                if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) )
                 {
                     logger.info("登录信息如下");
                     logger.info(username);
@@ -64,7 +64,8 @@ public class UserManagerController {
                             user.getUser_type()+","+user.getUser_gender()
                             +","+user.getUser_id_number()+","+user.getUser_address();
                     redisUtils.set(user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password(),token);
-                    return new RespBean(1,user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password());
+                    return new RespBean(1,
+                            user.getUser_phone_number()+"msbfajshbadsmnfbasmfa"+user.getUser_password());
                 }
             }
         }
@@ -85,7 +86,7 @@ public class UserManagerController {
      * @param token
      * @return
      */
-    @RequestMapping(value ="/info",method = RequestMethod.GET)
+    @RequestMapping(value ="/info",method = RequestMethod.POST)
     public UserInfoReturnData GetUserInfo(@RequestParam String token) {
         try {
             String [] roles = new String[1];
@@ -220,6 +221,7 @@ public class UserManagerController {
      */
     @RequestMapping(value ="/userinfo",method = RequestMethod.GET)
     public UserInfoReturnData getUserInfo(@RequestParam String token) {
+        System.out.println("userinfo被调用");
         String user = redisUtils.get(token);
         String data [] = user.split(",");
         if(data[3].equals("2"))
@@ -240,7 +242,7 @@ public class UserManagerController {
         }
         if(data[4].equals("0"))
         {
-            data[3] ="女";
+            data[4] ="女";
         }
         return new UserInfoReturnData(1,new UserInfo(data[0],data[1],data[2],data[3],data[4],data[5],data[6]));
     }
@@ -357,7 +359,7 @@ public class UserManagerController {
             List<User> users = userService.selectAllUser();
 
             for (User user : users) {
-                if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) && user.getUser_type() ==0 )
+                if (user.getUser_phone_number().equals(username)  && user.getUser_password().equals(password) && user.getUser_type() ==2 )
                 {
                     String token =user.getUser_real_name()+","+user.getUser_phone_number()+","+user.getUser_email()
                             +","+user.getUser_type()+","+user.getUser_gender()

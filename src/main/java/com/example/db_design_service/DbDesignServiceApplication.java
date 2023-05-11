@@ -9,9 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * spring boot 启动类
- *
- *
- *
  */
 @SpringBootApplication
 @MapperScan("org.sang.mapper")

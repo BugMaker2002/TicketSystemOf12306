@@ -42,7 +42,8 @@ public class OrderListController {
         List<GetAllOrderList> getAllOrderListLists = orderListService.getAllOrderLists(user_phone_number);
        for(GetAllOrderList getAllOrderList :getAllOrderListLists)
        {
-           getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(), Integer.parseInt(getAllOrderList.getSeat_no())));
+           getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(),
+                   Integer.parseInt(getAllOrderList.getSeat_no())));
        }
 
         return new GetAllOrderListReturnData(1,getAllOrderListLists);
@@ -191,7 +192,8 @@ public class OrderListController {
         logger.info(String.valueOf(getNotripOrderListLists.size()));
         for(GetAllOrderList getAllOrderList :getNotripOrderListLists)
         {
-            getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(), Integer.parseInt(getAllOrderList.getSeat_no())));
+            getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(),
+                    Integer.parseInt(getAllOrderList.getSeat_no())));
 
         }
         return new GetAllOrderListReturnData(1,getNotripOrderListLists);
@@ -211,7 +213,8 @@ public class OrderListController {
         logger.info(String.valueOf(getNoPayOrderListLists.size()));
         for(GetAllOrderList getAllOrderList :getNoPayOrderListLists)
         {
-            getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(), Integer.parseInt(getAllOrderList.getSeat_no())));
+            getAllOrderList.setSeat_no(GetResult_Seat_no(getAllOrderList.getSeat_type(),
+                    Integer.parseInt(getAllOrderList.getSeat_no())));
 
         }
         return new GetAllOrderListReturnData(1,getNoPayOrderListLists);
@@ -263,7 +266,8 @@ public class OrderListController {
 
 
     @RequestMapping(value ="/getOrderChangeResult",method = RequestMethod.GET)
-    public GetOrderListReturnData getOrderChangeResult(@RequestParam String token,String datetime,String train_no,String start_no,String end_no ,String passenger_phone_number)  {
+    public GetOrderListReturnData getOrderChangeResult(@RequestParam String token,String datetime,String train_no,
+                                                       String start_no,String end_no ,String passenger_phone_number)  {
 
         String user = redisUtils.get(token);
 
@@ -272,11 +276,13 @@ public class OrderListController {
         datetime = datetime.substring(0,10);
         String user_phone_number = data[1];
         logger.info(datetime);
-        List<GetOrderList> getOrderLists =   orderListService.GetOrderChagngeList(user_phone_number,datetime,train_no,start_no,end_no,passenger_phone_number);
+        List<GetOrderList> getOrderLists =   orderListService.GetOrderChagngeList(user_phone_number,datetime,
+                train_no,start_no,end_no,passenger_phone_number);
         logger.info(String.valueOf(getOrderLists.size()));
         for(GetOrderList getOrderList:getOrderLists)
         {
-            getOrderList.setSeat_no(GetResult_Seat_no(getOrderList.getSeat_type(), Integer.parseInt(getOrderList.getSeat_no())));
+            getOrderList.setSeat_no(GetResult_Seat_no(getOrderList.getSeat_type(), Integer.parseInt(
+                    getOrderList.getSeat_no())));
         }
 
         return new GetOrderListReturnData(1,getOrderLists);

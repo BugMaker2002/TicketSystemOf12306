@@ -92,16 +92,20 @@ public interface TrainInfoDao {
 
     @Update("update train_departure set passenger_volume=#{trainDeparture.passenger_volume}," +
             "train_start_time=#{trainDeparture.train_start_time},frequency=#{trainDeparture.frequency}" +
-            " where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=#{trainDeparture.train_stopover_station} and train_end_station=#{trainDeparture.train_end_station}")
+            " where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=" +
+            "#{trainDeparture.train_stopover_station} and train_end_station=#{trainDeparture.train_end_station}")
     void updateDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 
-    @Insert("insert into train_departure values(#{trainDeparture.train_start_station},#{trainDeparture.train_stopover_station}," +
+    @Insert("insert into train_departure values(#{trainDeparture.train_start_station}," +
+            "#{trainDeparture.train_stopover_station}," +
             "#{trainDeparture.train_end_station},#{trainDeparture.passenger_volume}," +
             "#{trainDeparture.train_start_time},#{trainDeparture.frequency})")
     void addDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 
-    @Delete("delete from train_departure where train_start_station=#{trainDeparture.train_start_station} and train_stopover_station=#{trainDeparture.train_stopover_station}" +
-            "and train_end_station=#{trainDeparture.train_end_station} and passenger_volume=#{trainDeparture.passenger_volume}" +
+    @Delete("delete from train_departure where train_start_station=#{trainDeparture.train_start_station} and " +
+            "train_stopover_station=#{trainDeparture.train_stopover_station}" +
+            "and train_end_station=#{trainDeparture.train_end_station} and passenger_volume=" +
+            "#{trainDeparture.passenger_volume}" +
             "and train_start_time=#{trainDeparture.train_start_time} and frequency=#{trainDeparture.frequency}")
     void deleteDeparture(@Param("trainDeparture")TrainDeparture trainDeparture);
 }
