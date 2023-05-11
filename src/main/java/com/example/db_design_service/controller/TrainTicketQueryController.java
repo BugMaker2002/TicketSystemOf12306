@@ -49,7 +49,7 @@ public class TrainTicketQueryController {
     @RequestMapping(value ="/queryTrainTicket",method = RequestMethod.GET)
     public TrainTicketPriceQueryReturnData GetTrainScheduleInfo(@RequestParam String train_start_station, String train_end_station, String datetime) {
 
-
+        System.out.println("queryTrainTicket"+train_start_station+" "+train_end_station+" "+datetime);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdfs =
                 new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -65,7 +65,9 @@ public class TrainTicketQueryController {
         {
             return new TrainTicketPriceQueryReturnData(406,null);
         }
+        System.out.println("断点");
             List<TrainScheduleInfo> trainScheduleInfos = trainScheduleService.searchTrainScheduleInfo(train_start_station,train_end_station);
+        System.out.println(trainScheduleInfos);
             List<TrainTicketPriceInfo> trainTicketPriceInfos = new ArrayList<>();
             for(TrainScheduleInfo trainScheduleInfo :trainScheduleInfos)
             {

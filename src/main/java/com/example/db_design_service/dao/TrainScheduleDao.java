@@ -33,14 +33,14 @@ public interface TrainScheduleDao {
             " C.running_time as start_running_time ,D.running_time as end_running_time \n" +
             " from train_parking_station as C ,train_parking_station as D \n" +
             " where C.train_no = D.train_no \n" +
-            " and C.station_name = #{start_station} and D.station_name = #{end_station}"
-//            +
-//            " and C.train_no in (select A.train_no from \n" +
-//            "train_parking_station as A ,train_parking_station as B \n" +
-//            "where  A.train_no = B.train_no and \n" +
-//            "A.station_name = #{start_station} and\n" +
-//            " B.station_name = #{end_station} \n" +
-//            " and A.station_no <B.station_no)"
+            " and C.station_name = #{start_station} and D.station_name = #{end_station} \n"
+            +
+            " and C.train_no in (select A.train_no from \n" +
+            "train_parking_station as A ,train_parking_station as B \n" +
+            "where  A.train_no = B.train_no and \n" +
+            "A.station_name = #{start_station} and\n" +
+            " B.station_name = #{end_station} \n" +
+            " and A.station_no <B.station_no)"
     )
     List<TrainScheduleInfo>  searchTrainSchedule(@Param("start_station") String start_station , @Param("end_station") String end_station);
 

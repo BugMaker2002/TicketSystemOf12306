@@ -32,7 +32,7 @@ public class OrderListController {
     public GetAllOrderListReturnData GetAllOrderList(@RequestParam String token) {
 
         logger.info(token);
-
+        System.out.println(token);
         String user = redisUtils.get(token);
 
         String data [] = user.split(",");
